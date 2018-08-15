@@ -12,6 +12,7 @@
 		62F3633021249E8700BAB70F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62F3632E21249E8700BAB70F /* Main.storyboard */; };
 		62F3633221249E8800BAB70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F3633121249E8800BAB70F /* Assets.xcassets */; };
 		62F3633521249E8800BAB70F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62F3633321249E8800BAB70F /* LaunchScreen.storyboard */; };
+		62F3637F2124B12C00BAB70F /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F3637E2124B12C00BAB70F /* Story.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		62F3633121249E8800BAB70F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62F3633421249E8800BAB70F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62F3633621249E8800BAB70F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62F3637E2124B12C00BAB70F /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				62F3632A21249E8700BAB70F /* AppDelegate.swift */,
 				62F3632C21249E8700BAB70F /* ViewController.swift */,
 				62F3632E21249E8700BAB70F /* Main.storyboard */,
+				62F3637E2124B12C00BAB70F /* Story.swift */,
 				62F3633121249E8800BAB70F /* Assets.xcassets */,
 				62F3633321249E8800BAB70F /* LaunchScreen.storyboard */,
 				62F3633621249E8800BAB70F /* Info.plist */,
@@ -137,6 +140,7 @@
 			files = (
 				62F3632D21249E8700BAB70F /* ViewController.swift in Sources */,
 				62F3632B21249E8700BAB70F /* AppDelegate.swift in Sources */,
+				62F3637F2124B12C00BAB70F /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
