@@ -9,7 +9,7 @@
 import UIKit
 
 //story model
-enum Story {
+enum StoryData {
     case returnTrip
     case touchDown
     case homeward
@@ -21,7 +21,7 @@ enum Story {
     case home
 }
 
-extension Story {
+extension StoryData {
     var artwork: UIImage {
         switch self {
         case .returnTrip: return #imageLiteral(resourceName: "ReturnTrip")
