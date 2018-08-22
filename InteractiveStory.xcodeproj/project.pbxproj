@@ -41,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		621933FB212DE31C007BE641 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62F3632A21249E8700BAB70F /* AppDelegate.swift */,
+				62F3633321249E8800BAB70F /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		62F3631E21249E8700BAB70F = {
 			isa = PBXGroup;
 			children = (
@@ -60,14 +69,13 @@
 		62F3632921249E8700BAB70F /* InteractiveStory */ = {
 			isa = PBXGroup;
 			children = (
-				62F3632A21249E8700BAB70F /* AppDelegate.swift */,
 				62F3632C21249E8700BAB70F /* ViewController.swift */,
 				62F363822124C01200BAB70F /* PageController.swift */,
 				62F3632E21249E8700BAB70F /* Main.storyboard */,
 				62F3637E2124B12C00BAB70F /* StoryData.swift */,
 				62F363802124B41A00BAB70F /* Page.swift */,
 				62F3633121249E8800BAB70F /* Assets.xcassets */,
-				62F3633321249E8800BAB70F /* LaunchScreen.storyboard */,
+				621933FB212DE31C007BE641 /* Supporting Files */,
 				62F3633621249E8800BAB70F /* Info.plist */,
 			);
 			path = InteractiveStory;

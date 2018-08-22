@@ -8,37 +8,76 @@
 
 import UIKit
 
+extension NSAttributedString {
+    var stringRange: NSRange {
+        return NSMakeRange(0, self.length)
+    }
+}
+
+extension StoryData {
+    var attributedText: NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: text)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: attributedString.stringRange)
+        
+        return attributedString
+    }
+}
+
+extension Page {
+    func story(attributed: Bool) -> NSAttributedString {
+        if attributed {
+            return story.attributedText
+        } else {
+            return NSAttributedString(string: story.text)
+        }
+    }
+}
+
 class PageController: UIViewController {
 
     var page: Page?
     
     // MARK: - User Interface Props / Views
     
-    let artworkView : UIImageView = {
+    lazy var artworkView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = self.page?.story.artwork
         
         return imageView
     }()
     
-    let storyLabel: UILabel = {
+    lazy var storyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        
+        label.attributedText = self.page?.story(attributed: true)
+
         return label
     }()
     
-    let firstChoiceButton: UIButton = {
+    lazy var firstChoiceButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let title = self.page?.firstChoice?.title ?? "Play Again"
+        let selector = self.page?.firstChoice != nil ? #selector(PageController.loadFirstChoice) : #selector(PageController.playAgain)
+        
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: selector, for: .touchUpInside)
         
         return button
     }()
     
-    let secondChoiceButton: UIButton = {
+    lazy var secondChoiceButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle(self.page?.secondChoice?.title, for: .normal)
+        button.addTarget(self, action: #selector(PageController.loadSecondChoice), for: .touchUpInside)
         
         return button
     }()
@@ -56,33 +95,6 @@ class PageController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        //because this prop is optional, we have to unwrap it
-        if let page = page {
-            artworkView.image = page.story.artwork
-            
-            let attributedString = NSMutableAttributedString(string: page.story.text)
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 10
-            
-            attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-            
-            //for styled text, assign it to the label's attributed text, not just .text
-            storyLabel.attributedText = attributedString
-            
-            if let firstCoice = page.firstChoice {
-                firstChoiceButton.setTitle(firstCoice.title, for: .normal)
-                firstChoiceButton.addTarget(self, action: #selector(PageController.loadFirstChoice), for: .touchUpInside)
-            } else {
-                firstChoiceButton.addTarget(self, action: #selector(PageController.playAgain), for: .touchUpInside)
-                firstChoiceButton.setTitle("Play Again", for: .normal)
-            }
-            
-            if let secondChoice = page.secondChoice {
-                secondChoiceButton.setTitle(secondChoice.title, for: .normal)
-                secondChoiceButton.addTarget(self, action: #selector(PageController.loadSecondChoice), for: .touchUpInside)
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,7 +140,7 @@ class PageController: UIViewController {
             secondChoiceButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32)
             ])
     }
-    
+
     @objc func loadFirstChoice() {
         if let page = page, let firstChoice = page.firstChoice {
             let nextPage = firstChoice.page
