@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +62,14 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func keyboardWillHide(_ notification: Notification) {
+        textFieldBottomConstraint.constant = 40
+        
+        UIView.animate(withDuration: 0.8) {
+            self.view.layoutIfNeeded()
+        }
+    }
+        
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
